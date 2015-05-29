@@ -1,11 +1,18 @@
 #encoding:gbk
+#程序目的，连接邮件服务器，读取指定账户的邮件内容，写入mysql数据库，供短信中间件使用
+#程序使用步骤
+#1.打开config.txt文件设置参数，json格式
+#2.安装ruby 解释器、mysql2包
+#3.用作业计划执行程序
+#Ahthor:Zsg
+#Date:20150529
 require 'net/pop'
 require 'mysql2'
 require 'base64'
 require 'json'
 errlog=File.open('transferMail_err.log','a') #运行错误日志
 begin
-	json = File.read('config1.txt') 
+	json = File.read('config.txt') 
 	conf = JSON.parse(json)
 	client = Mysql2::Client.new(:host => conf["mysql"]["host"], :username => conf["mysql"]["username"], :password => conf["mysql"]["password"]) 
 rescue Exception => e

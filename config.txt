@@ -1,0 +1,4 @@
+{"mysql": { "host":"localhost", "port":"3306", "database":"jdsms", "username":"root", "password":"password"},"mailServer": {"host":"11.1.1.100", "port":"110"}, "adminMobile":"18602010626", "mailAccountToMobile":[
+{"account" :"zsg@gwhk-test.com", "password" :"zsg", "mobile": ["18922132261","18602010626"]},{"account" :"pub@gwhk-test.com", "password" :"pub", "mobile": ["18922132261","18602010626"]}
+]
+}
