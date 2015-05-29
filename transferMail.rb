@@ -14,7 +14,7 @@ errlog=File.open('transferMail_err.log','a') #运行错误日志
 begin
 	json = File.read('config.txt') 
 	conf = JSON.parse(json)
-	client = Mysql2::Client.new(:host => conf["mysql"]["host"], :username => conf["mysql"]["username"], :password => conf["mysql"]["password"]) 
+	client = Mysql2::Client.new(host: conf["mysql"]["host"], database: conf["mysql"]["database"], username: conf["mysql"]["username"], password: conf["mysql"]["password"]) 
 rescue Exception => e
 	puts e.inspect
 	errlog.puts("#{Time.new}:#{e.inspect}")
@@ -35,7 +35,7 @@ mailAccounts.each {|acc|
 			content1 = msg.partition(head)[2] #截取邮件内容
 			content2 = client.escape(Base64.decode64(content1)) #解码和SQL化字符串
 			mobiles.each {|mobile|
-				client.query("insert into jdsms.t_sendtask(destNumber,content) values('#{mobile}','#{content2}')") #写入数据库
+				client.query("insert into t_sendtask(destNumber,content) values('#{mobile}','#{content2}')") #写入数据库
 			}
 		end
 	rescue Exception => e
@@ -43,7 +43,7 @@ mailAccounts.each {|acc|
 		puts mailError
 		errlog.puts(mailError)
 		adminMobile=conf["adminMobile"]
-		client.query("insert into jdsms.t_sendtask(destNumber,content) values('#{adminMobile}','#{mailError}')")
+		client.query("insert into t_sendtask(destNumber,content) values('#{adminMobile}','#{mailError}')")
 		client.close
 		exit
     end

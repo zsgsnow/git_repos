@@ -1,0 +1,2 @@
+2015-05-29 16:06:46 +0800 mailAccount pub@gwhk-test.com #<Net::POPAuthenticationError: -ERR Logon Failure>
+2015-05-29 16:07:39 +0800 mailAccount pub@gwhk-test.com #<Net::POPAuthenticationError: -ERR Logon Failure>
